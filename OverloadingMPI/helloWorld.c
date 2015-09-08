@@ -27,15 +27,15 @@ int main(int argc, char ** argv)
    {
       printf("Rank 0 is about to send a msg to rank 1\n");
 
-      MPI_Send((void *)msgToSend, strlen(msgToSend), MPI_CHAR, 1, NULL, MPI_COMM_WORLD);
+      MPI_Send((void *)msgToSend, strlen(msgToSend), MPI_CHAR, 1, 0, MPI_COMM_WORLD);
 
 
    }
    else // rank 1 will receive a msg from rank 0
    {
-      MPI_Recv((void *) &recvBuffer, strlen(msgToSend), MPI_CHAR, 0, NULL, MPI_COMM_WORLD, NULL);
+      MPI_Recv((void *) &recvBuffer, strlen(msgToSend), MPI_CHAR, 0, MPI_ANY_TAG, MPI_COMM_WORLD, NULL);
       
-      printf("Rank 1 received [%s] %d from rank 0\n", recvBuffer, strlen(recvBuffer));
+      printf("Rank 1 received [%s] from rank 0\n", recvBuffer);
    }
    
    MPI_Finalize(); // we are done. bye mpi!! clean up enviroment 
