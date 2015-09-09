@@ -1,6 +1,8 @@
 cd to lib and do:
 chmod +x ./compile.sh
 
+add the path to lib into LD_LUBRARY_PATH
+
 cd to example and 
 make hello
 make overrided
